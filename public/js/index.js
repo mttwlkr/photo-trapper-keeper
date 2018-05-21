@@ -16,7 +16,7 @@ async function fetchPhotos() {
 async function appendAllPhotos() {
   const photos = await fetchPhotos();
   const displayPhotos = photos.map( photo => {
-    return (`<div id=${photo.id}><h2 class='display-photo-title'>${photo.title}</h2><img class='display-photo-image' src='${photo.url}' /></div>`)
+    return (`<div id=${photo.id}><h2 class='display-photo-title'>${photo.title}</h2><img class='display-photo-image' src='${photo.url}' /><button class='display-photo-delete-button'>X</button></div>`)
   })
   // displayPhotos.forEach( div => {
   //   console.log(div)
