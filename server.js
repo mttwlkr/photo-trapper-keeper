@@ -38,9 +38,20 @@ app.post('/api/v1/photos', (request, response) => {
       })
     })
     .catch( error => {
-      response.status(500).json({ error })
+      response.status(500).json({ "Error:": error })
     })
-})       
+})  
+
+app.delete('/api/v1/photos', (request, response) => {
+  const { id } = request.body;
+  database('photos').where('id', id).delete()
+    .then(photo => {
+      response.status(202)
+    })
+    .catch(error => {
+      response.status(500).json({ "Error:": error })
+    })
+})     
 
 app.listen(app.get('port'), () => {
   console.log(`Photo Trapper Keeper is running on ${app.get('port')}`)

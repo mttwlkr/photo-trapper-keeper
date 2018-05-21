@@ -1,4 +1,5 @@
 $('#add-photo-button').click(addNewPhoto)
+$('.display-albums').on('click', '.display-photo-delete-button', deletePhoto)
 
 async function addNewPhoto() {
   event.preventDefault();
@@ -20,6 +21,22 @@ async function addNewPhoto() {
 function resetFields() {
   $('#add-photo-title').val('')
   $('#add-photo-url').val('')
+}
+
+async function deletePhoto() {
+  const photoID = $(this).parent('div').attr('id')
+  $(this).parent('div').remove()
+  try {
+    const response = await fetch('/api/v1/photos', {
+      method: "DELETE",
+      body: JSON.stringify({ id: photoID }),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })    
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 async function appendSinglePhoto(photo) {
