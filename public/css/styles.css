@@ -23,6 +23,11 @@ h1 {
   margin: 5px 0px;
 }
 
+input[type="text"]::-webkit-input-placeholder,
+input[type="url"]::-webkit-input-placeholder {
+  color: #DBD9A2;
+}
+
 #add-photo-form {
   display: flex;
   flex-direction: column;
@@ -56,11 +61,16 @@ h1 {
   height: 222px;
 }
 
-.display-photo-delete-button {
+.display-photo-delete-button,
+#add-photo-title,
+#add-photo-url,
+#add-photo-button {
   background: #5A7361;
   border: 1px solid #DBD9A2;
   margin-bottom: 10px;
   color: #DBD9A2;
   padding: 5px 20px;
+}
+.display-photo-delete-button {
   border-radius: 20px;
 }
