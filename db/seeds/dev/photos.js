@@ -1,5 +1,5 @@
 exports.seed = function(knex, Promise) {
-  return knex('photos').del() // delete all footnotes first
+  return knex('photos').del()
     .then(() => {
       return Promise.all([
         knex('photos').insert({title: 'corgi', url: 'https://i.imgur.com/MA2D0.jpg'}, 'id')
