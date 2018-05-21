@@ -27,12 +27,11 @@ app.get('/api/v1/photos', (request, response) => {
 })
 
 app.post('/api/v1/photos', (request, response) => {
-  if (!request.body) {
+  if (!request.body.url) {
     return response.status(422).send({Error: "Missing Information"})
   }
   database('photos').insert(request.body, ['title', 'url', 'id'])
     .then( photo => {
-      console.log(photo)
       response.status(201).json({
         newPhoto: photo[0]
       })
@@ -44,6 +43,7 @@ app.post('/api/v1/photos', (request, response) => {
 
 app.delete('/api/v1/photos', (request, response) => {
   const { id } = request.body;
+
   database('photos').where('id', id).delete()
     .then(photo => {
       response.status(202)
@@ -57,3 +57,4 @@ app.listen(app.get('port'), () => {
   console.log(`Photo Trapper Keeper is running on ${app.get('port')}`)
 })
 
+module.exports = { app, database }
