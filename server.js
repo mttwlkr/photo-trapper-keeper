@@ -46,7 +46,7 @@ app.delete('/api/v1/photos', (request, response) => {
 
   database('photos').where('id', id).del()
     .then(photo => {
-      response.status(202).json({ "Success": photo})
+      response.status(202).json({ "Success": `${photo} deleted`})
     })
     .catch(error => {
       response.status(500).json({ "Error:": error })

@@ -91,6 +91,7 @@ describe('Testing endpoints', () => {
       })
       .end((err, res) => {
         res.should.have.status(202);
+        res.body.should.deep.equal({ Success: '1 deleted' })
       done();
       })
     })
