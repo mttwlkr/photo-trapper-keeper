@@ -5,7 +5,7 @@ async function addNewPhoto() {
   event.preventDefault();
   const userTitle = $('#add-photo-title').val()
   const userURL = $('#add-photo-url').val()
-
+  
   const response = await fetch('/api/v1/photos', {
     method: "POST",
     body: JSON.stringify({title: userTitle, url: userURL}),

@@ -44,9 +44,9 @@ app.post('/api/v1/photos', (request, response) => {
 app.delete('/api/v1/photos', (request, response) => {
   const { id } = request.body;
 
-  database('photos').where('id', id).delete()
+  database('photos').where('id', id).del()
     .then(photo => {
-      response.status(202)
+      response.status(202).json({ "Success": photo})
     })
     .catch(error => {
       response.status(500).json({ "Error:": error })
