@@ -1,5 +1,66 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #3A393C;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  background-color: #3A393C;
+  color: #DBD9A2;
+}
+
+.form-style-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#add-photo-title,
+#add-photo-url,
+#add-photo-button {
+  margin: 5px 0px;
+}
+
 #add-photo-form {
   display: flex;
   flex-direction: column;
   width: 20%;
+}
+
+.display-albums {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  background: #5A7361;
+  justify-content: center;
+}
+
+.display-photo-div {
+  border: 1px solid #DBD9A2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 10px;
+  background: #C97E6B;
+}
+
+.display-photo-title {
+  color: #3a393c;
+}
+
+.display-photo-image {
+  width: 300px;
+  height: 222px;
+}
+
+.display-photo-delete-button {
+  background: #5A7361;
+  border: 1px solid #DBD9A2;
+  margin-bottom: 10px;
+  color: #DBD9A2;
+  padding: 5px 20px;
+  border-radius: 20px;
 }

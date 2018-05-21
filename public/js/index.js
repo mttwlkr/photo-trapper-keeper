@@ -40,7 +40,7 @@ async function deletePhoto() {
 }
 
 async function appendSinglePhoto(photo) {
-  const displayPhoto = `<div id=${photo.newPhoto.id}><h2 class='display-photo-title'>${photo.newPhoto.title}</h2><img class='display-photo-image' src='${photo.newPhoto.url}' /><button class='display-photo-delete-button'>X</button></div>`
+  const displayPhoto = `<div class='display-photo-div' id=${photo.newPhoto.id}><img class='display-photo-image' src='${photo.newPhoto.url}' /><h2 class='display-photo-title'>${photo.newPhoto.title}</h2><button class='display-photo-delete-button'>X</button></div>`
   $('.display-albums').append(displayPhoto)
 }
 
@@ -53,7 +53,7 @@ async function fetchPhotos() {
 async function appendAllPhotos() {
   const photos = await fetchPhotos();
   const displayPhotos = photos.map( photo => {
-    return (`<div id=${photo.id}><h2 class='display-photo-title'>${photo.title}</h2><img class='display-photo-image' src='${photo.url}' /><button class='display-photo-delete-button'>X</button></div>`)
+    return (`<div class='display-photo-div' id=${photo.id}><img class='display-photo-image' src='${photo.url}' /><h2 class='display-photo-title'>${photo.title}</h2><button class='display-photo-delete-button'>X</button></div>`)
   })
   $('.display-albums').append(displayPhotos)
 }
