@@ -86,21 +86,19 @@ describe('Testing endpoints', () => {
   describe('DELETE', () => {
     it('should delete a photo', (done) => {
       chai.request(app)
-      .del('/api/v1/photos').send({
-        id: "1"
-      })
+      .del('/api/v1/photos/1')
       .end((err, res) => {
-        res.should.have.status(202);
+        res.should.have.status(200);
         res.body.should.deep.equal({ Success: '1 deleted' })
       done();
       })
     })
 
-    it('should not delete a photo if the ID does not exist', (done) => {
+    it('should not delete a photo if the ID is not present', (done) => {
       chai.request(app)
       .del('/api/v1/photos')
       .end((err, res) => {
-        res.should.have.status(500);
+        res.should.have.status(404);
       done();
       })
     })

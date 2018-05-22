@@ -27,9 +27,8 @@ async function deletePhoto() {
   const photoID = $(this).parent('div').attr('id')
   $(this).parent('div').remove()
   try {
-    const response = await fetch('/api/v1/photos', {
+    const response = await fetch(`/api/v1/photos/${photoID}`, {
       method: "DELETE",
-      body: JSON.stringify({ id: photoID }),
       headers: {
         "Content-Type": "application/json"
       }

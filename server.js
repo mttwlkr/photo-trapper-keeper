@@ -41,15 +41,15 @@ app.post('/api/v1/photos', (request, response) => {
     })
 })  
 
-app.delete('/api/v1/photos', (request, response) => {
-  const { id } = request.body;
+app.delete('/api/v1/photos/:id', (request, response) => {
+  const { id } = request.params;
 
   database('photos').where('id', id).del()
     .then(photo => {
-      response.status(202).json({ "Success": `${photo} deleted`})
+      response.status(200).json({ "Success": `${photo} deleted`})
     })
     .catch(error => {
-      response.status(500).json({ "Error:": error })
+      response.status(404).json({ "Error:": "ID Does Not Exist" })
     })
 })     
 
