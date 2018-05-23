@@ -27,7 +27,7 @@ app.get('/api/v1/photos', (request, response) => {
 })
 
 app.post('/api/v1/photos', (request, response) => {
-  if (!request.body.url) {
+  if (!request.body.url || !request.body.title) {
     return response.status(422).send({Error: "Missing Information"})
   }
   database('photos').insert(request.body, ['title', 'url', 'id'])
@@ -37,7 +37,7 @@ app.post('/api/v1/photos', (request, response) => {
       })
     })
     .catch( error => {
-      response.status(500).json({ "Error:": error })
+      response.status(500).json({ Error: error })
     })
 })  
 
@@ -46,10 +46,14 @@ app.delete('/api/v1/photos/:id', (request, response) => {
 
   database('photos').where('id', id).del()
     .then(photo => {
-      response.status(200).json({ "Success": `${photo} deleted`})
+      if (photo > 0) {
+        response.status(200).json({ Success: `${photo} deleted`})
+      } else {
+        response.status(404).json({ Error: "Photo not found" })
+      }
     })
     .catch(error => {
-      response.status(404).json({ "Error:": "ID Does Not Exist" })
+      response.status(404).json({error})
     })
 })     
 

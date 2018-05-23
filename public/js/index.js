@@ -6,7 +6,8 @@ async function addNewPhoto() {
   const userTitle = $('#add-photo-title').val()
   const userURL = $('#add-photo-url').val()
   
-  const response = await fetch('/api/v1/photos', {
+  try {
+    const response = await fetch('/api/v1/photos', {
     method: "POST",
     body: JSON.stringify({title: userTitle, url: userURL}),
     headers: {
@@ -15,7 +16,10 @@ async function addNewPhoto() {
   })
   const responsePhoto = await response.json();
   if (responsePhoto.newPhoto.id) { resetFields() }
-  appendSinglePhoto(responsePhoto)
+  appendSinglePhoto(responsePhoto)  
+  } catch (error) {
+    throw error
+  }
 }
 
 function resetFields() {
@@ -34,7 +38,7 @@ async function deletePhoto() {
       }
     })    
   } catch (error) {
-    console.log(error)
+    throw error
   }
 }
 
@@ -44,9 +48,13 @@ async function appendSinglePhoto(photo) {
 }
 
 async function fetchPhotos() {
-  const response = await fetch('/api/v1/photos')
-  const photos = await response.json()
-  return photos
+  try {
+    const response = await fetch('/api/v1/photos')
+    const photos = await response.json()
+    return photos 
+  } catch (error) {
+    throw error
+  }
 }
 
 async function appendAllPhotos() {

@@ -89,7 +89,17 @@ describe('Testing endpoints', () => {
       .del('/api/v1/photos/1')
       .end((err, res) => {
         res.should.have.status(200);
-        res.body.should.deep.equal({ Success: '1 deleted' })
+        res.body.should.deep.equal({ Success: "1 deleted" })
+      done();
+      })
+    })
+
+    it('should not delete a photo if the ID does not match', (done) => {
+      chai.request(app)
+      .del('/api/v1/photos/5000')
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.body.should.deep.equal({ "Error": "Photo not found" })
       done();
       })
     })
